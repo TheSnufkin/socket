@@ -1,0 +1,62 @@
+#include <stdio.h>
+#include <sys/socket.h>
+#include <netinet/in.h>
+#include <string.h>
+#include <stdlib.h>
+
+int main(){
+ int ClientSocket;
+ char msg[1024];
+ struct sockaddr_in ServerAddr;
+ socklen_t AddrSize;
+
+ //Create socket - tworzenie gniazda
+ ClientSocket = socket(PF_INET, SOCK_STREAM, 0);
+  if(ClientSocket<0){
+	printf("Socket Create error\n"); //Socket error - Blad tworzenia gniazda
+	exit(1);
+  }
+ //Configuration adress settings - konfiguracja ustawien adresow
+ ServerAddr.sin_family = AF_INET;
+ ServerAddr.sin_port = htons(8888); //port number - numer portu
+ //ServerAddr.sin_addr.s_addr = inet_addr("127.0.0.1"); //Set IP addres - adr IP
+ ServerAddr.sin_addr.s_addr = htonl(INADDR_ANY);
+ //Set bits of padding to 0 - wyzerowanie pola bitow wypelnienia
+ memset(ServerAddr.sin_zero, '\0', sizeof ServerAddr.sin_zero);
+
+ //Connect socket to server - polaczenie gniazda z serwerem
+ AddrSize = sizeof ServerAddr;
+ connect(ClientSocket, (struct sockaddr *) &ServerAddr, AddrSize);
+ /* if( connect(ClientSocket, (struct sockaddr *) &ServerAddr, AddrSize))<0){
+	printf("connect error\n"); //Connect error - Blad przy polaczeniu
+	exit(1);
+  }*/
+
+ //Read message from server - odczytanie wiadomosci od serwera
+
+  for(;;){
+  bzero(msg,1024);
+  printf("Klient:");
+  fgets(msg,1024,stdin);
+
+  send(ClientSocket,msg,strlen(msg),0);
+
+
+/*ODBIERANIE ******************************
+  recv(ClientSocket,msg,1024,0);
+  printf("Serwer: %s",msg);
+  bzero(msg,1024);
+******************************************/
+/*WYSYLANIE ******************************
+  bzero(msg,1024);
+  printf("Klient:");
+  fgets(msg,1024,stdin);
+
+  send(ClientSocket,msg,strlen(msg),0);
+******************************************/
+ }
+ 
+ //close(ClientSocket);
+ 
+ return 0;
+}

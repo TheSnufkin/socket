@@ -1,4 +1,4 @@
-Funkcje:
+
 1. send(NewSocket,bufor,strlen(bufor),0); - wyslanie wiadomosci string gniazdem
    recv(ClientSocket,bufor,1024,0);       - odbieranie wiadomosci string z gniazda
    
@@ -28,13 +28,13 @@ Funkcje:
 
 
 
-Strony:
 
-1. tlumaczyc nie trzeba: http://home.agh.edu.pl/~kamich/SRiR/
 
-2. poradnik do podstawy: http://www.programminglogic.com/example-of-client-server-program-in-c-using-sockets-and-tcp/
 
-3. chyba ładnie wytlumaczone: http://www.thegeekstuff.com/2011/12/c-socket-programming/?utm_source=feedburner
+
+1. poradnik do podstawy: http://www.programminglogic.com/example-of-client-server-program-in-c-using-sockets-and-tcp/
+
+2. chyba ładnie wytlumaczone: http://www.thegeekstuff.com/2011/12/c-socket-programming/?utm_source=feedburner
 
 4.https://github.com/bschmaltz/c-p2p-chat - p2p
 

@@ -1,0 +1,97 @@
+///KALK S
+    for(;;){
+    //while(1){
+    //odczyt wiadomosci klienta
+    bzero(wiadomosc,200);
+    recv(gniazdo_klienta,wiadomosc,200,0);
+    printf("klient pyta: %s\n", wiadomosc);
+
+    int a,dl,b,wynik,i;
+    char tab[10],tab3[10],znak;
+
+    a=atoi(wiadomosc);
+    sprintf(tab, "%d", a);
+    dl=strlen(tab);
+    znak=wiadomosc[dl];
+    for(i=0;i<10;i++){
+        tab3[i]=wiadomosc[i+dl+1];
+    }
+
+    b=atoi(tab3);
+    switch(znak){
+        case '+':
+            wynik = a+b;
+            break;
+        case '-':
+            wynik = a-b;
+            break;
+        case '*':
+            wynik = a*b;
+            break;
+        case '/':
+            wynik = a/b;
+            break;
+    }
+
+    sprintf(tab, "%d", wynik);
+    strcpy(wiadomosc, tab);
+    send(gniazdo_klienta,wiadomosc,strlen(wiadomosc),0);
+
+    }
+    close(gniazdo);
+    close(gniazdo_klienta);
+
+///SPC S
+    int a = zliczanie(wiadomosc);   //----->
+
+
+int zliczanie(char* tab){
+    
+    int dl,licznik=0,i,wynik;
+
+    dl=strlen(tab);
+
+    for(i=0;i<dl;i++){
+        if(tab[i]==' '){
+            licznik++;
+        }
+    }
+
+    wynik=dl-licznik-1;
+    printf("wynik = %d, dl = %d, licznik = %d, tab = %s\n",wynik,dl,licznik,tab);
+    
+    return wynik;
+}
+
+///SRT S
+ for(;;){
+ 
+ 
+   //odebranie liczby
+   recv(NewSocket,msg,1024,0);
+   //zwiększenie licznika liczb
+   licznik++;
+   //konwersja na int
+   liczba = atoi(msg);
+ 
+   //przypisanie do kolejnego miejsca w tablicy
+   array[licznik-1] = liczba;
+           
+   /*Wypisanie tablicy liczb
+   for(i=0; i<=licznik; i++)
+       printf(" array[%d]: %d\n",i, array[i]); */
+ 
+   //sortowanie
+for(int i=0;i<licznik;i++)
+    for(int j=1;j<licznik-i;j++)
+    if(array[j-1]>array[j])
+     {
+        int temp = array[j-1];
+    array[j-1] = array[j];
+    array[j] = temp;
+     }
+ 
+    printf("posortowane numery: \n");
+    for (i = 0; i <= licznik; ++i)
+ 
+printf("%d\n", array[i]);

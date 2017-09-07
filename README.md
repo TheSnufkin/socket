@@ -41,3 +41,7 @@
 5. http://beej.us/guide/bgnet/output/html/singlepage/bgnet.html - ponoc dobre
 
 6. http://www.cs.rpi.edu/~moorthy/Courses/os98/Pgms/socket.html - sockety
+
+UDP: 
+https://www.cs.rutgers.edu/~pxk/417/notes/sockets/udp.html
+https://www.abc.se/~m6695/udp.html
